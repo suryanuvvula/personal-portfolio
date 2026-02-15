@@ -25,6 +25,7 @@ const Contact: React.FC = () => {
 
     try {
       const response = await api.sendContactMessage(formData);
+      console.log('Contact form response:', response);
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setStatus('idle'), 5000);
