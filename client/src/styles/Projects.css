@@ -1,0 +1,119 @@
+.projects-section {
+  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+}
+
+[data-theme="light"] .projects-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  position: relative;
+  animation: fadeInUp 0.8s ease backwards;
+  cursor: pointer;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 15px;
+}
+
+.project-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+[data-theme="light"] .project-title {
+  color: #0a0a0a;
+}
+
+.project-number {
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(102, 126, 234, 0.15);
+  line-height: 1;
+}
+
+[data-theme="light"] .project-number {
+  color: rgba(102, 126, 234, 0.12);
+}
+
+.project-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #a0a0a0;
+  margin-bottom: 20px;
+}
+
+[data-theme="light"] .project-description {
+  color: #555555;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.project-tech-tag {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 12px;
+  color: #888;
+}
+
+[data-theme="light"] .project-tech-tag {
+  background: rgba(102, 126, 234, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  color: #555555;
+  font-weight: 500;
+}
+
+.project-links {
+  margin-top: auto;
+}
+
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.project-link-btn:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.project-link-btn:hover .arrow {
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

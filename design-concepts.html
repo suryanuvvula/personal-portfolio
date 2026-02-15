@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Design Concepts - Surya Nuvvula</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #999;
+        }
+
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .concept-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+
+        .concept-preview {
+            height: 400px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-info {
+            padding: 30px;
+            border-top: 1px solid #333;
+        }
+
+        .concept-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .concept-description {
+            font-size: 15px;
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .feature-tag {
+            padding: 6px 14px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #667eea;
+        }
+
+        /* Concept 1: Terminal/Developer Theme */
+        .terminal-theme {
+            background: #0d1117;
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal-header {
+            background: #161b22;
+            padding: 10px 15px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        .terminal-content {
+            padding: 20px;
+            color: #58a6ff;
+            font-size: 14px;
+        }
+
+        .terminal-line {
+            margin-bottom: 8px;
+        }
+
+        .terminal-prompt {
+            color: #39d353;
+        }
+
+        .terminal-command {
+            color: #f0883e;
+        }
+
+        /* Concept 2: 3D Card Layout */
+        .card-3d-theme {
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .floating-card {
+            width: 280px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            transform: rotateY(-15deg) rotateX(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotateY(-15deg) rotateX(5deg) translateY(0); }
+            50% { transform: rotateY(-15deg) rotateX(5deg) translateY(-10px); }
+        }
+
+        .card-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card-role {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+        }
+
+        .card-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+
+        /* Concept 3: Timeline/Journey */
+        .timeline-theme {
+            background: #f8f9fa;
+            padding: 20px;
+        }
+
+        .timeline-container {
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 25px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 14px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid #f8f9fa;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .timeline-company {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .timeline-tech {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Concept 4: Glassmorphism/Modern */
+        .glass-theme {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .glass-avatar {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .glass-name {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .glass-role {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .glass-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .glass-skill {
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .select-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .select-btn:hover {
+            background: #5568d3;
+        }
+
+        @media (max-width: 768px) {
+            .concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Choose Your Portfolio Design</h1>
+        <p>Select a unique template that represents your professional journey</p>
+    </div>
+
+    <div class="concepts-grid">
+        <!-- Concept 1: Terminal Theme -->
+        <div class="concept-card" data-concept="terminal">
+            <div class="concept-preview terminal-theme">
+                <div class="terminal-header">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                </div>
+                <div class="terminal-content">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">surya@portfolio</span>:~$ whoami
+                    </div>
+                    <div class="terminal-line">Surya Nuvvula</div>
+                    <div class="terminal-line">Full Stack Developer | 10 Years Experience</div>
+                    <div class="terminal-line">&nbsp;</div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">surya@portfolio</span>:~$ cat skills.txt
+                    </div>
+                    <div class="terminal-line">React | Angular | Node.js | TypeScript</div>
+                    <div class="terminal-line">Express | NestJS | NextJS | MongoDB</div>
+                    <div class="terminal-line">&nbsp;</div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">surya@portfolio</span>:~$ <span class="terminal-command">./view-projects.sh</span>
+                    </div>
+                    <div class="terminal-line" style="animation: blink 1s infinite;">_</div>
+                </div>
+            </div>
+            <div class="concept-info">
+                <h3 class="concept-title">1. Developer Terminal Theme</h3>
+                <p class="concept-description">
+                    A command-line interface inspired design that showcases your technical expertise.
+                    Features interactive terminal commands, syntax highlighting, and a dark developer aesthetic.
+                </p>
+                <div class="features">
+                    <span class="feature-tag">Interactive CLI</span>
+                    <span class="feature-tag">Dark Mode</span>
+                    <span class="feature-tag">Typing Animation</span>
+                    <span class="feature-tag">Code Highlighting</span>
+                    <span class="feature-tag">Geeky & Unique</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Concept 2: 3D Card Layout -->
+        <div class="concept-card" data-concept="3d-card">
+            <div class="concept-preview card-3d-theme">
+                <div class="floating-card">
+                    <div class="card-name">Surya Nuvvula</div>
+                    <div class="card-role">Full Stack Developer</div>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">10+</div>
+                            <div>Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">50+</div>
+                            <div>Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">6</div>
+                            <div>Companies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="concept-info">
+                <h3 class="concept-title">2. 3D Floating Cards</h3>
+                <p class="concept-description">
+                    Modern 3D card-based layout with parallax effects and smooth animations.
+                    Features depth perception, glassmorphism, and interactive hover states.
+                </p>
+                <div class="features">
+                    <span class="feature-tag">3D Transforms</span>
+                    <span class="feature-tag">Parallax</span>
+                    <span class="feature-tag">Glassmorphism</span>
+                    <span class="feature-tag">Smooth Animations</span>
+                    <span class="feature-tag">Modern & Sleek</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Concept 3: Timeline Journey -->
+        <div class="concept-card" data-concept="timeline">
+            <div class="concept-preview timeline-theme">
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-company">Universal Destination & Experiences</div>
+                            <div class="timeline-tech">React • NextJS • Node.js</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-company">Best Buy</div>
+                            <div class="timeline-tech">Angular • NestJS • MongoDB</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-company">Axon</div>
+                            <div class="timeline-tech">React • Express • TypeScript</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-company">Nationwide Insurance</div>
+                            <div class="timeline-tech">Angular • Node.js</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="concept-info">
+                <h3 class="concept-title">3. Career Journey Timeline</h3>
+                <p class="concept-description">
+                    Story-driven design that takes visitors through your professional journey.
+                    Features vertical timeline, scroll animations, and chronological experience showcase.
+                </p>
+                <div class="features">
+                    <span class="feature-tag">Story-Driven</span>
+                    <span class="feature-tag">Scroll Animations</span>
+                    <span class="feature-tag">Clean & Professional</span>
+                    <span class="feature-tag">Journey Focused</span>
+                    <span class="feature-tag">Easy Navigation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Concept 4: Glassmorphism -->
+        <div class="concept-card" data-concept="glass">
+            <div class="concept-preview glass-theme">
+                <div class="glass-card">
+                    <div class="glass-avatar">SN</div>
+                    <div class="glass-name">Surya Nuvvula</div>
+                    <div class="glass-role">Full Stack Developer</div>
+                    <div class="glass-skills">
+                        <span class="glass-skill">React</span>
+                        <span class="glass-skill">Angular</span>
+                        <span class="glass-skill">Node.js</span>
+                        <span class="glass-skill">TypeScript</span>
+                        <span class="glass-skill">NextJS</span>
+                        <span class="glass-skill">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="concept-info">
+                <h3 class="concept-title">4. Glassmorphism Hero</h3>
+                <p class="concept-description">
+                    Ultra-modern design with frosted glass effects and vibrant gradients.
+                    Features blur effects, translucent cards, and contemporary visual aesthetics.
+                </p>
+                <div class="features">
+                    <span class="feature-tag">Glassmorphism</span>
+                    <span class="feature-tag">Vibrant Colors</span>
+                    <span class="feature-tag">Backdrop Blur</span>
+                    <span class="feature-tag">Minimal & Bold</span>
+                    <span class="feature-tag">Eye-Catching</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+
+    <script>
+        // Add click handlers
+        document.querySelectorAll('.concept-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const concept = this.getAttribute('data-concept');
+                alert(`You selected: ${concept}\n\nLet me know which design you prefer, and I'll build it!`);
+            });
+        });
+    </script>
+</body>
+</html>
